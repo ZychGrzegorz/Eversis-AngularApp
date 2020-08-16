@@ -1,0 +1,89 @@
+<h1 class="m-t-3">User data</h1>
+<br />
+
+<form
+  [formGroup]="registrationForm"
+  #userForm="ngForm"
+  novalidate
+  (ngSubmit)="onSubmit()"
+  class="container d-flex flex-column justify-content-start"
+>
+  <div class="container d-flex flex-column justify-content-start mt-2">
+    <label class="form-label h6" for="">Name</label>
+    <input
+      [class.is-invalid]="
+        userName.invalid && (userName.touched || userName.dirty)
+      "
+      formControlName="userName"
+      type="text"
+      name="userName"
+      class="form-control"
+    />
+    <div *ngIf="userName.invalid && (userName.touched || userName.dirty)">
+      <p *ngIf="userName.errors?.required" class="text-danger">
+        Username is required
+      </p>
+    </div>
+
+    <div *ngIf="userName.invalid">
+      <p *ngIf="userName.errors?.pattern" class="text-danger">
+        Only letters allowed
+      </p>
+    </div>
+  </div>
+  <div class="container d-flex flex-column justify-content-start mt-2">
+    <label class="form-label h6" for="">Surname</label>
+    <input
+      [class.is-invalid]="
+        userSurname.invalid && (userSurname.touched || userSurname.dirty)
+      "
+      formControlName="userSurname"
+      type="text"
+      name="userSurname"
+      class="form-control"
+    />
+    <div
+      *ngIf="userSurname.invalid && (userSurname.touched || userSurname.dirty)"
+    >
+      <p *ngIf="userSurname.errors?.required" class="text-danger">
+        Surname is required
+      </p>
+      <p *ngIf="userSurname.errors?.pattern" class="text-danger">
+        Only letters allowed
+      </p>
+    </div>
+  </div>
+  <div class="container d-flex flex-column justify-content-start mt-2">
+    <label class="form-label h6" for="">Age</label>
+    <input
+      formControlName="userAge"
+      type="number"
+      name="userAge"
+      class="form-control"
+      [class.is-invalid]="userAge.invalid && (userAge.touched || userAge.dirty)"
+    />
+
+    <div *ngIf="userAge.invalid && (userAge.touched || userAge.dirty)">
+      <p *ngIf="userAge.errors?.required" class="text-danger">
+        Age is required
+      </p>
+      <p *ngIf="userAge.errors?.pattern" class="text-danger">
+        Only integral numbers allowed
+      </p>
+      <p *ngIf="userAge.errors?.min" class="text-danger">
+        Age cannot be a negative number
+      </p>
+    </div>
+  </div>
+  <br />
+  <p class="font-weight-bold h4" *ngIf="userName.valid && userSurname.valid">
+    Hello {{ registrationForm.value.userName }}
+    {{ registrationForm.value.userSurname }}
+  </p>
+
+  <input
+    type="submit"
+    value="Save"
+    class="mt-3 btn btn-primary font-weight-bold"
+  />
+</form>

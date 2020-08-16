@@ -1,0 +1,51 @@
+<section
+  class="d-flex justify-content-center flex-column align-items-center"
+  *ngIf="dataService.userAge > 18 || dataService.userAge === 18"
+>
+  <div
+    class="bg-primary mt-4 p-2 w-50 d-flex justify-content-center rounded font-weight-bold text-white h4"
+  >
+    Hello {{ dataService.userName }} {{ dataService.userSurname }}
+  </div>
+  <br />
+
+  <br />
+  <div
+    class="bg-success p-2 w-25 d-flex justify-content-center rounded font-weight-bold text-white"
+  >
+    Access
+  </div>
+  <img
+    class="mt-3 img-fluid"
+    src="../../../assets/500x500.png"
+    alt="plahoder"
+  />
+</section>
+
+<section
+  class="d-flex justify-content-center flex-column align-items-center"
+  *ngIf="dataService.userAge < 18 && dataService.userAge !== null"
+>
+  <div
+    class="bg-danger p-2 w-50 d-flex justify-content-center rounded font-weight-bold text-white"
+  >
+    No access! <br />
+    You are under 18!
+  </div>
+
+  {{ dataService.userAge }}
+</section>
+
+<section
+  *ngIf="dataService.userAge === null"
+  class="d-flex justify-content-center flex-column align-items-center"
+>
+  <div
+    class="bg-danger p-2 w-50 d-flex justify-content-center rounded font-weight-bold text-white"
+  >
+    No access! <br />
+    No data available
+  </div>
+
+  {{ dataService.userAge }}
+</section>
